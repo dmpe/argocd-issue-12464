@@ -1,18 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: abc-application-set
+  name: cars-application-set
 spec:
   generators:
   - list:
       elements:
-      - name: app1
-        branch: main
-      - name: app2
+      - name: audi
         branch: main
   template:
     metadata:
-      name: 'abc-{{name}}-apps'
+      name: '{{name}}-apps'
       labels:
         env: '{{name}}'
     spec:

@@ -15,3 +15,8 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+  syncPolicy:
+    syncOptions:
+    - ApplyOutOfSyncOnly=false
+    - RespectIgnoreDifferences=false
+    - CreateNamespace=true

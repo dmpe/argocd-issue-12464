@@ -9,6 +9,11 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: podinfo-example/kustomize/
+    path: helm/podinfo-example/kustomize/
     repoURL: 'https://github.com/dmpe/argocd-issue-12464.git'
     targetRevision: main
+  syncPolicy:
+    syncOptions:
+    - ApplyOutOfSyncOnly=false
+    - RespectIgnoreDifferences=false
+    - CreateNamespace=true
