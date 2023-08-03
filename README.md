@@ -13,4 +13,4 @@ when they are referenced by a different `ApplicationSet`
 
 (Situation: `AppSet` creates `ArgoCD Application` which then references actual `ArgoCD` Application that deployes k8s objects)
 
-![image2](./images/appset_audi-apps.JPG)
+![image2](./images/actual-deployments.JPG)
