@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfo-example
+  namespace: argocd
+spec:
+  destination:
+    namespace: podinfo-example
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: podinfo-example/kustomize/
+    repoURL: 'https://github.com/dmpe/argocd-issue-12464.git'
+    targetRevision: main

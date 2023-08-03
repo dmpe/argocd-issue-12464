@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: abc-application-set
+spec:
+  generators:
+  - list:
+      elements:
+      - name: app1
+        branch: main
+      - name: app2
+        branch: main
+  template:
+    metadata:
+      name: 'abc-{{name}}-apps'
+      labels:
+        env: '{{name}}'
+    spec:
+      project: 'default'
+      source:
+        repoURL: 'https://github.com/dmpe/argocd-issue-12464.git'
+        path: 'lib/'
+        targetRevision: '{{branch}}'
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        managedNamespaceMetadata:
+          annotations:
+            field.cattle.io/projectId: c-m-d658bggg:p-7p8rj # Cluster ID
+          labels:
+            field.cattle.io/projectId: p-7p8rj
+        syncOptions:
+        - ApplyOutOfSyncOnly=true
+        - RespectIgnoreDifferences=true
+        - CreateNamespace=true
